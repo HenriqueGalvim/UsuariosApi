@@ -1,0 +1,21 @@
+@UsuariosApi_HostAddress = http://localhost:5146
+
+GET {{UsuariosApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+POST {{UsuariosApi_HostAddress}}/usuario/cadastro
+Content-type: application/json
+{
+  "Username": "Romulo",
+  "DataNascimento": "1986-01-01",
+  "Password": "Admin1234!",
+  "RePassword": "Admin1234!"
+}
+###
+POST {{UsuariosApi_HostAddress}}/usuario/login
+Content-type: application/json
+{
+  "Username": "Romulo",
+  "Password": "Admin1234!"
+}
