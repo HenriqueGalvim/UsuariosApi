@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UsuariosApi.Data.Dto.Usuario;
@@ -19,6 +20,7 @@ public class UsuarioController: ControllerBase
 		_usuarioService = cadastroService;
 	}
 
+	// -> Se tiver o authorize em tudo, os anonimos podem ir no get apenas e ja resolve [AllowAnonymous]
 	[HttpPost("cadastro")]
 	public async Task<IActionResult> CadastrarUsuario(CreateUsuarioDto CreateUsuarioDto)
 	{
@@ -29,7 +31,8 @@ public class UsuarioController: ControllerBase
 	[HttpPost("login")]
 	public async Task<IActionResult> Login(LoginUsuarioDto LoginUsuarioDto) 
 	{
-		await _usuarioService.Login(LoginUsuarioDto);
-		return Ok("Usuário Autenticado!");
+		var token = await _usuarioService.Login(LoginUsuarioDto);
+		return Ok(token);
+
 	}
 }

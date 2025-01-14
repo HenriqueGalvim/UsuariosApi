@@ -1,4 +1,5 @@
 @UsuariosApi_HostAddress = http://localhost:5146
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkhlbnJpcXVlIiwiaWQiOiI3ZDYyOWJkNS1jNDY3LTQ5ZmEtODMwOC0xYjc5OWQ4YTQ0M2QiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9kYXRlb2ZiaXJ0aCI6IjAxLzAxLzIwMDMgMDQ6MDA6MDAiLCJleHAiOjE3MjY1ODc5ODB9.3QnPuBv5ZexjS0R1a0bE0lmf6zSNFQkvQn6KCnYBwko
 
 GET {{UsuariosApi_HostAddress}}/weatherforecast/
 Accept: application/json
@@ -16,6 +17,12 @@ Content-type: application/json
 POST {{UsuariosApi_HostAddress}}/usuario/login
 Content-type: application/json
 {
-  "Username": "Romulo",
-  "Password": "Admin1234!"
+  "Username": "Henrique",
+  "Password": "Admin123!"
 }
+###
+
+GET {{UsuariosApi_HostAddress}}/acesso
+Authorization: {{token}}
+
+###
