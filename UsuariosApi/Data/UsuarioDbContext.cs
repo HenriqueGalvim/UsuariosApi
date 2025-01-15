@@ -10,4 +10,6 @@ public class UsuarioDbContext: IdentityDbContext<Usuario>
     {
         
     }
+    public DbSet<Personagem> Personagens { get; set; }
+
 }

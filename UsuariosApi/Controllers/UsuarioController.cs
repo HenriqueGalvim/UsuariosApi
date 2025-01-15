@@ -33,6 +33,5 @@ public class UsuarioController: ControllerBase
 	{
 		var token = await _usuarioService.Login(LoginUsuarioDto);
 		return Ok(token);
-
 	}
 }

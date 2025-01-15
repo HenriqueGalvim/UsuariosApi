@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UsuariosApi.Data;
@@ -11,9 +12,11 @@ using UsuariosApi.Data;
 namespace UsuariosApi.Migrations
 {
     [DbContext(typeof(UsuarioDbContext))]
-    partial class UsuarioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250115124938_Criando Personagem")]
+    partial class CriandoPersonagem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,11 +159,8 @@ namespace UsuariosApi.Migrations
 
             modelBuilder.Entity("UsuariosApi.Models.Personagem", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<int>("Forca")
                         .HasColumnType("integer");
@@ -182,7 +182,7 @@ namespace UsuariosApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personagem");
+                    b.ToTable("Personagens");
                 });
 
             modelBuilder.Entity("UsuariosApi.Models.Usuario", b =>

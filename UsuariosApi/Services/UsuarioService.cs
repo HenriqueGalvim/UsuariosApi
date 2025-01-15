@@ -29,13 +29,14 @@ public class UsuarioService
 
 		if (!resultado.Succeeded)
 		{
-			throw new ApplicationException("Falha ao cadastrar o usuário");
+			var erros = string.Join(", ", resultado.Errors.Select(e => e.Description));
+			throw new ApplicationException($"Falha ao cadastrar o usuário: {erros}");
 		}
 	}
 
-	public  async Task<string> Login(LoginUsuarioDto LoginUsuarioDto)
+	public async Task<string> Login(LoginUsuarioDto LoginUsuarioDto)
 	{
-	  var resultado = await _singInManager.PasswordSignInAsync(LoginUsuarioDto.Username,LoginUsuarioDto.Password, false, false);
+		var resultado = await _singInManager.PasswordSignInAsync(LoginUsuarioDto.Username, LoginUsuarioDto.Password, false, false);
 
 		if (!resultado.Succeeded)
 		{
@@ -44,7 +45,7 @@ public class UsuarioService
 		var usuario = _singInManager.UserManager.Users.FirstOrDefault(user => user.NormalizedUserName == LoginUsuarioDto.Username.ToUpper())!;
 
 		var token = _tokenService.GenerateToken(usuario);
-
+		
 		return token;
 	}
 }
